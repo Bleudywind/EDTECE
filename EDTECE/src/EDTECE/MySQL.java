@@ -5,6 +5,7 @@
  */
 package edtece;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -35,20 +36,27 @@ public class MySQL {
             System.out.println("VendorError: " + e.getErrorCode());
         }
     }
-    public static int getIntAndExceptionHandling(String query){
-        int number = -1;
+    public static ArrayList getStringAndExceptionHandling(String query){
+        ArrayList<String> str;
+        str = new ArrayList<String>();
         try{
             stmt = MySQL.conn.createStatement();
             rs = MySQL.stmt.executeQuery(query);
+            rsmd = rs.getMetaData();
+            int nb_colonne = rsmd.getColumnCount();
             
             try{
-                rs.next();
-                number = rs.getInt(1);
+                while (rs.next()){
+                    
+                    for (int i = 1; i < nb_colonne; ++i)
+                    {
+                        str.add(rs.getString(i));
+                    }
+                    
+                }
+               
             }
             catch(SQLException e){
-                System.out.println("SQLException when calling getInt(String query) --> rs.next() & number = rs.getInt(1) : " + e.getMessage());
-                System.out.println("SQLState: " + e.getSQLState());
-                System.out.println("VendorError: " + e.getErrorCode());
             }
         }
         
@@ -75,6 +83,6 @@ public class MySQL {
                 stmt = null;
             }
         }
-        return number;
+        return str;
     }
 }
