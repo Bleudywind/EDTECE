@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 04 juin 2020 à 13:14
+-- Généré le :  jeu. 04 juin 2020 à 21:17
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -206,7 +206,42 @@ CREATE TABLE IF NOT EXISTS `seance` (
   PRIMARY KEY (`ID`),
   KEY `ID_COURS` (`ID_COURS`),
   KEY `ID_TYPE` (`ID_TYPE`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `seance`
+--
+
+INSERT INTO `seance` (`ID`, `SEMAINE`, `DATE`, `HEURE_DEBUT`, `HEURE_FIN`, `ETAT`, `ID_COURS`, `ID_TYPE`) VALUES
+(1, 1, '2020-06-01', 830, 1145, 'Valide', 1, 4),
+(2, 1, '2020-06-01', 1345, 1515, 'Valide', 1, 1),
+(3, 1, '2020-06-02', 1015, 1330, 'Valide', 2, 4),
+(4, 1, '2020-06-02', 1530, 1700, 'Annule', 2, 1),
+(5, 1, '2020-06-03', 830, 1145, 'Valide', 3, 4),
+(6, 1, '2020-06-03', 1345, 1515, 'Valide', 3, 2),
+(7, 1, '2020-06-04', 1015, 1330, 'Valide', 4, 4),
+(8, 1, '2020-06-04', 1530, 1700, 'Valide', 4, 2),
+(9, 1, '2020-06-01', 1345, 1515, 'Valide', 1, 1),
+(10, 1, '2020-06-02', 1530, 1700, 'Valide', 2, 1),
+(11, 1, '2020-06-03', 1345, 1515, 'Valide', 3, 2),
+(12, 1, '2020-06-04', 1530, 1700, 'Valide', 4, 2),
+(13, 1, '2020-06-01', 830, 1145, 'Valide', 2, 4),
+(14, 1, '2020-06-01', 1345, 1700, 'Valide', 3, 4),
+(15, 1, '2020-06-02', 830, 1145, 'Valide', 1, 4),
+(16, 1, '2020-06-02', 1530, 1845, 'Valide', 4, 4),
+(17, 1, '2020-06-03', 1015, 1145, 'Valide', 1, 1),
+(18, 1, '2020-06-03', 1200, 1330, 'Valide', 2, 1),
+(19, 1, '2020-06-04', 830, 1000, 'Valide', 4, 2),
+(20, 1, '2020-06-04', 1015, 1145, 'Valide', 3, 2),
+(21, 1, '2020-06-04', 830, 1000, 'Valide', 3, 2),
+(22, 1, '2020-06-04', 1015, 1145, 'Valide', 4, 2),
+(23, 1, '2020-06-03', 1345, 1515, 'Valide', 1, 1),
+(24, 1, '2020-06-03', 1530, 1700, 'Valide', 2, 1),
+(25, 1, '2020-06-01', 830, 1700, 'Valide', 5, 5),
+(26, 1, '2020-06-02', 830, 1700, 'Valide', 5, 5),
+(27, 1, '2020-06-03', 830, 1700, 'Valide', 5, 5),
+(28, 1, '2020-06-04', 830, 1700, 'Valide', 5, 5),
+(29, 1, '2020-06-05', 830, 1700, 'Valide', 5, 5);
 
 -- --------------------------------------------------------
 
@@ -223,6 +258,41 @@ CREATE TABLE IF NOT EXISTS `seance_enseignant` (
   KEY `ID_SCEANCE` (`ID_SCEANCE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `seance_enseignant`
+--
+
+INSERT INTO `seance_enseignant` (`ID_SCEANCE`, `ID_ENSEIGNANT`) VALUES
+(1, 19),
+(2, 3),
+(3, 20),
+(4, 21),
+(5, 2),
+(6, 21),
+(7, 18),
+(8, 16),
+(9, 19),
+(10, 20),
+(11, 2),
+(12, 18),
+(13, 2),
+(14, 20),
+(15, 19),
+(16, 18),
+(17, 3),
+(18, 21),
+(19, 16),
+(20, 2),
+(21, 2),
+(22, 16),
+(23, 3),
+(24, 21),
+(25, 17),
+(26, 17),
+(27, 17),
+(28, 17),
+(29, 17);
+
 -- --------------------------------------------------------
 
 --
@@ -238,6 +308,28 @@ CREATE TABLE IF NOT EXISTS `seance_groupe` (
   KEY `ID_GROUPE` (`ID_GROUPE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `seance_groupe`
+--
+
+INSERT INTO `seance_groupe` (`ID_SEANCE`, `ID_GROUPE`) VALUES
+(1, 1),
+(1, 2),
+(2, 1),
+(3, 1),
+(3, 2),
+(4, 1),
+(5, 1),
+(5, 2),
+(6, 1),
+(7, 1),
+(7, 2),
+(8, 1),
+(9, 2),
+(10, 2),
+(11, 2),
+(12, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -252,6 +344,41 @@ CREATE TABLE IF NOT EXISTS `seance_salles` (
   KEY `ID_SALLE` (`ID_SALLE`),
   KEY `ID_SEANCE` (`ID_SEANCE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `seance_salles`
+--
+
+INSERT INTO `seance_salles` (`ID_SEANCE`, `ID_SALLE`) VALUES
+(1, 2),
+(2, 3),
+(3, 1),
+(4, 1),
+(5, 6),
+(6, 4),
+(7, 2),
+(8, 3),
+(9, 4),
+(10, 4),
+(11, 1),
+(12, 3),
+(13, 6),
+(14, 6),
+(15, 2),
+(16, 5),
+(17, 5),
+(18, 6),
+(19, 6),
+(20, 3),
+(21, 4),
+(22, 1),
+(23, 1),
+(24, 3),
+(25, 2),
+(26, 2),
+(27, 2),
+(28, 2),
+(29, 2);
 
 -- --------------------------------------------------------
 
@@ -330,7 +457,7 @@ INSERT INTO `utilisateur` (`ID`, `EMAIL`, `PASSWORD`, `NOM`, `PRENOM`, `DROIT`) 
 (7, 'marie.pussard@gmail.com', 'marie', 'Pussard', 'Marie', 4),
 (8, 'baptiste.boyer@gmail.com', 'baptiste', 'Boyer', 'Baptiste', 4),
 (9, 'juliette.stephane@gmail.com', 'juliette', 'Stephane', 'Juliette', 4),
-(10, 'ln.clavelier@gmail.com', 'ln', 'Clavelier', 'Clavelier', 4),
+(10, 'ln.clavelier@gmail.com', 'ln', 'Clavelier', 'Helene', 4),
 (11, 'mathieu.bach@gmail.com', 'mathieu', 'Bach', 'Mathieu', 4),
 (12, 'octave.mesquita@gmail.com', 'octave', 'Mesquita', 'Octave', 4),
 (13, 'pierre.ader@gmail.com', 'pierre', 'Ader', 'Pierre', 4),
