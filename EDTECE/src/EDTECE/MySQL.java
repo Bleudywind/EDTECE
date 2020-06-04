@@ -48,7 +48,7 @@ public class MySQL {
             try{
                 while (rs.next()){
                     
-                    for (int i = 1; i < nb_colonne; ++i)
+                    for (int i = 1; i < nb_colonne + 1; ++i)
                     {
                         str.add(rs.getString(i));
                     }

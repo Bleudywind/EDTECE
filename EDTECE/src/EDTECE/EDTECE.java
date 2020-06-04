@@ -5,6 +5,7 @@
  */
 package edtece;
 
+import EDTECE.GUI.Login;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -18,13 +19,9 @@ public class EDTECE {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        ArrayList<String> i;
-        i = new ArrayList<String>();
-       
-        
         MySQL.isconnected();
-        i = MySQL.getStringAndExceptionHandling("SELECT * FROM `salle` WHERE `ID_SITE` = 1");
-        System.out.print(i.get(1));
+        
+        Login lng = new Login();
     }
     
 }
