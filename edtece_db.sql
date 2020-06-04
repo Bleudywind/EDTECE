@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 04 juin 2020 à 12:48
+-- Généré le :  jeu. 04 juin 2020 à 13:14
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -323,7 +323,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 INSERT INTO `utilisateur` (`ID`, `EMAIL`, `PASSWORD`, `NOM`, `PRENOM`, `DROIT`) VALUES
 (1, 'thom.ferrier@gmail.com', 'bleudywind99', 'Ferrier', 'Thomas', 1),
 (2, 'Segado.JP@edu.ece.fr', 'jp', 'Segado', 'Jean Pierre', 2),
-(3, 'Bianchini.olivier@edu.ece.fr', 'olivier', 'Bianchini', 'Olivier', 3),
+(3, 'Bianchini.marc@edu.ece.fr', 'marc', 'Bianchini', 'Marc', 3),
 (4, 'louis.roussel@gmail.com', 'louis', 'Roussel', 'Louis', 4),
 (5, 'adrien.martinon@gmail.com', 'adrien', 'Martinon', 'Adrien', 4),
 (6, 'lucas.dessouki@gmail.com', 'lucas', 'Dessouki', 'Lucas', 4),
@@ -331,8 +331,8 @@ INSERT INTO `utilisateur` (`ID`, `EMAIL`, `PASSWORD`, `NOM`, `PRENOM`, `DROIT`) 
 (8, 'baptiste.boyer@gmail.com', 'baptiste', 'Boyer', 'Baptiste', 4),
 (9, 'juliette.stephane@gmail.com', 'juliette', 'Stephane', 'Juliette', 4),
 (10, 'ln.clavelier@gmail.com', 'ln', 'Clavelier', 'Clavelier', 4),
-(11, 'mathier.bach@gmail.com', 'mathier', 'Bach', 'Mathieu', 4),
-(12, 'octave.mesquita@gmail.com', 'octave', 'Mesquita', 'Ocatave', 4),
+(11, 'mathieu.bach@gmail.com', 'mathieu', 'Bach', 'Mathieu', 4),
+(12, 'octave.mesquita@gmail.com', 'octave', 'Mesquita', 'Octave', 4),
 (13, 'pierre.ader@gmail.com', 'pierre', 'Ader', 'Pierre', 4),
 (14, 'eva.dorise@gmail.com', 'eva', 'Dorise', 'Eva', 4),
 (15, 'alexandre.jodin@gmail.com', 'alexandre', 'Jodin', 'Alexandre', 4),
@@ -340,8 +340,8 @@ INSERT INTO `utilisateur` (`ID`, `EMAIL`, `PASSWORD`, `NOM`, `PRENOM`, `DROIT`) 
 (17, 'lemarec.stephanie@gmail.com', 'lemarec', 'Lemarec', 'Stephanie', 3),
 (18, 'schneider.maxime@gmail.com', 'maxime', 'Schneider', 'Maxime', 3),
 (19, 'fabienne.coudray@gmail.com', 'fabienne', 'Coudray', 'Fabienne', 2),
-(20, 'moualhi.waleed@gmail.com', 'waleed', 'Moualhi', 'Waleed', 2),
-(21, 'maylinh.grand@mail.com', 'grand', 'Maylinh', 'Grand', 3);
+(20, 'mouhali.waleed@gmail.com', 'waleed', 'Mouhali', 'Waleed', 2),
+(21, 'maylinh.grand@mail.com', 'grand', 'Grand', 'Maylinh', 3);
 
 --
 -- Contraintes pour les tables déchargées
