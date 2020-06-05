@@ -17,4 +17,18 @@ public class Cours {
         result = MySQL.getStringAndExceptionHandling("SELECT * FROM type_cours WHERE ID = '"+ ID_t +"'");
         typeCour = result.get(1);
     }
+    public Cours(int ID)
+    {
+        ArrayList <String> result = new ArrayList<>();
+        result = MySQL.getStringAndExceptionHandling("SELECT * FROM cours WHERE ID = '"+ ID +"'");
+        nom = result.get(1);
+    }
+    public String GetNom()
+    {
+        return nom;
+    }
+    public String typeCour()
+    {
+        return typeCour;
+    }
 }

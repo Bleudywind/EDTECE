@@ -12,5 +12,6 @@ public class Enseignant {
         ArrayList <String> result = new ArrayList<>();
         result = edtece.MySQL.getStringAndExceptionHandling("SELECT * FROM enseignant WHERE ID_UTILISATEUR = '"+ ID_utilisateur +"'");
         Utilisateur = new utilisateur(ID_utilisateur);
+        cours = new Cours(Integer.parseInt(result.get(1)));
     }
 }

@@ -1,5 +1,7 @@
 package EDTECE;
 
+import java.util.ArrayList;
+
 
 public class Salle {
     
@@ -7,9 +9,12 @@ public class Salle {
     private int capacite;
     private String site;
     
-    public Salle (String Nom, int Capacite, String Site){
-        nom = Nom;
-        capacite = Capacite;
-        site = Site;
+    public Salle (int ID){
+        ArrayList <String> result = new ArrayList<>();
+        result = edtece.MySQL.getStringAndExceptionHandling("SELECT * FROM salle WHERE ID = '"+ ID +"'");
+        nom = result.get(1);
+        capacite = Integer.parseInt(result.get(2));
+        result = edtece.MySQL.getStringAndExceptionHandling("SELECT * FROM site WHERE ID = '"+ Integer.parseInt(result.get(3)) +"'");
+        site = result.get(1);
     }
 }

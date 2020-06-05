@@ -55,4 +55,48 @@ public class Seance {
             cours = new Cours(Integer.parseInt(result.get(6)),Integer.parseInt(result.get(7)));
         } 
     }
+    public String GetEtat()
+    {
+        return etat;
+    }
+    public int Getannee()
+    {
+        return annee;
+    }
+    public int Getmois()
+    {
+        return mois;
+    }
+    public int Getjour()
+    {
+        return jour;
+    }
+    public int GetheureD()
+    {
+        return heureD;
+    }
+    public int GetheureF()
+    {
+        return heureF;
+    }
+    public int GetminuteD()
+    {
+        return minuteD;
+    }
+    public int GetminuteF()
+    {
+        return minuteF;
+    }
+    public Cours Getcours()
+    {
+        return cours;
+    }
+    public int Getsemaine()
+    {
+        return semaine;
+    }
+    public int getID()
+    {
+        return ID;
+    }
 }

@@ -1,5 +1,7 @@
 package EDTECE.GUI;
 
+import EDTECE.SeanceGroupe;
+import EDTECE.etudiant;
 import EDTECE.utilisateur;
 import java.awt.Color;
 import java.awt.Container;
@@ -13,12 +15,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
+import org.joda.time.DateTime;
+
 
 public class MainPage extends JFrame{
     
     private final int HAUTEUR_SCREEN = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
     private final int LARGEUR_SCREEN = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
     private final JLabel nom_txt = new JLabel();
+    private JLabel weekofyear;
     
     
     public MainPage(utilisateur user)
@@ -29,6 +34,13 @@ public class MainPage extends JFrame{
         Container frame = getContentPane();
         JPanel jp = new JPanel();
         jp.setLayout(null);
+        
+        DateTime dt = new DateTime();
+        weekofyear = new JLabel("Semaine " +Integer.toString(dt.getWeekOfWeekyear()));
+        
+        etudiant etu = new etudiant(user);
+        SeanceGroupe seanceUser = new SeanceGroupe(etu.getGroupe().GetID());
+        
         
         nom_txt.setText("Emploi du temps de " + user.getPrenom() + " " + user.getNom());
         
@@ -95,6 +107,38 @@ public class MainPage extends JFrame{
             
             semaine_txt.get(i).setBounds(conteneurEDT.getWidth()*3/100 + i*lgJour + i*conteneurEDT.getWidth()*2/100 + lgJour/2 - 20, conteneurEDT.getHeight()*2/100, 100, 20);
             conteneurEDT.add(semaine_txt.get(i));
+            
+        }
+        JPanel Case;
+        for (int j = 0; j < seanceUser.getSeance().size(); j++)
+        {
+            
+            if (seanceUser.getSeance().get(j).Getsemaine() == dt.getWeekOfWeekyear())
+            {
+                int premierJDeLaSemaine = dt.getDayOfMonth() - dt.getDayOfWeek();
+                switch (seanceUser.getSeance().get(j).Getjour() - premierJDeLaSemaine + 1)
+                {
+                    case 1:
+                        Case = new JPanel();
+                        int tempsSeance = seanceUser.getSeance().get(j).GetheureF() + seanceUser.getSeance().get(j).GetminuteF()/60 - seanceUser.getSeance().get(j).GetheureD() - seanceUser.getSeance().get(j).GetminuteD();
+                        Case.setBounds(semaine.get(0).getX(), semaine.get(0).getY() + (seanceUser.getSeance().get(j).GetheureD()+ seanceUser.getSeance().get(j).GetminuteD()/60 - 17/2)*semaine.get(0).getHeight() /13 , semaine.get(0).getWidth(), tempsSeance *semaine.get(0).getHeight()/13 );
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        break;
+                    
+                }
+            }
+        }
+        for (int i = 0; i < 6; i++)
+        {
             conteneurEDT.add(semaine.get(i));
         }
         
@@ -106,8 +150,13 @@ public class MainPage extends JFrame{
             conteneurEDT.add(heures_txt.get(j));
             }
         
+        
+        weekofyear.setBounds(LARGEUR_SCREEN /2 - 50, HAUTEUR_SCREEN*16/100 - 50, 100, 10);
+        
+        
         navbar.add(nom_txt);
         
+        jp.add(weekofyear);
         jp.add(navbar);
         jp.add(conteneurEDT);
         
