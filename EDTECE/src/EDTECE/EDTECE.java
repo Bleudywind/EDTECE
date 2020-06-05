@@ -7,6 +7,7 @@ package edtece;
 
 import EDTECE.GUI.Login;
 import java.sql.SQLException;
+import EDTECE.Seance;
 import java.util.ArrayList;
 
 /**
@@ -20,7 +21,7 @@ public class EDTECE {
      */
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         MySQL.isconnected();
-        
+        Seance sc = new Seance(2);
         Login lng = new Login();
     }
     

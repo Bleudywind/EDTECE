@@ -1,36 +1,48 @@
 package EDTECE;
 
-import edtece.MySQL;
+
 import java.util.ArrayList;
 
 
 public class utilisateur {
     
-    private String ID;
+    private int ID;
     private String email;
     private String password;
     private String nom;
     private String prenom;
-    private String droit;
+    private int droit;
     
     public utilisateur(String Email, String Password)
     {
         ArrayList<String> user = new ArrayList<>();
-        user = MySQL.getStringAndExceptionHandling("SELECT * FROM  utilisateur WHERE EMAIL='" + Email + "' AND PASSWORD = '" + Password + "';");
+        user = edtece.MySQL.getStringAndExceptionHandling("SELECT * FROM  utilisateur WHERE EMAIL='" + Email + "' AND PASSWORD = '" + Password + "';");
         
-        ID = user.get(0);
+        ID = Integer.parseInt(user.get(0));
         email = Email;
         password = Password;
         nom = user.get(3);
         prenom = user.get(4);
-        droit = user.get(5);
+        droit = Integer.parseInt(user.get(5));
+        
+    }
+    
+    public utilisateur(int id)
+    {
+        ArrayList <String> result = new ArrayList<>();
+        result = edtece.MySQL.getStringAndExceptionHandling("SELECT * FROM utilisateur WHERE ID = '"+ id +"'");
+        ID = id;
+        email = result.get(1);
+        nom = result.get(3);
+        prenom = result.get(4);
+        droit = Integer.parseInt(result.get(5));
         
     }
     
     public static boolean checklogin (String email_check, String password_check)
     {
         ArrayList<String> user = new ArrayList<>();
-        user = MySQL.getStringAndExceptionHandling("SELECT * FROM  utilisateur WHERE EMAIL='" + email_check + "' AND PASSWORD = '" + password_check + "';");
+        user = edtece.MySQL.getStringAndExceptionHandling("SELECT * FROM  utilisateur WHERE EMAIL='" + email_check + "' AND PASSWORD = '" + password_check + "';");
         
         if (!user.isEmpty())
         {
@@ -42,7 +54,7 @@ public class utilisateur {
         }
     }
     
-    public String getID()
+    public int getID()
     {
         return ID;
     }
@@ -62,7 +74,7 @@ public class utilisateur {
     {
         return prenom;
     }
-    public String getDroit()
+    public int getDroit()
     {
         return droit;
     }

@@ -62,7 +62,7 @@ public class Login extends JFrame {
             if(utilisateur.checklogin(e_mail.getText(), password.getText()))
             {
                 utilisateur loggedIn = new utilisateur(e_mail.getText(), password.getText());
-                
+                MainPage mp = new MainPage(loggedIn);
                 setVisible(false);
                 dispose();
             }
