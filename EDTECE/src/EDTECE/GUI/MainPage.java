@@ -5,6 +5,7 @@ import EDTECE.etudiant;
 import EDTECE.utilisateur;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,9 +25,13 @@ public class MainPage extends JFrame{
     private final int LARGEUR_SCREEN = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
     private final JLabel nom_txt = new JLabel();
     private JLabel weekofyear;
+    private JButton suivant = new JButton("Semaine suivante");
+    private JButton prec = new JButton("Semaine précédente");
+    private int cp;
+    private utilisateur userLng;
     
     
-    public MainPage(utilisateur user)
+    public MainPage(utilisateur user, int cp_semaine)
     {
         setTitle("Emploi du temps");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -35,8 +40,11 @@ public class MainPage extends JFrame{
         JPanel jp = new JPanel();
         jp.setLayout(null);
         
+        userLng =user;
+        
         DateTime dt = new DateTime();
-        weekofyear = new JLabel("Semaine " +Integer.toString(dt.getWeekOfWeekyear()));
+        cp = cp_semaine;
+        weekofyear = new JLabel("Semaine " + Integer.toString(cp + dt.getWeekOfWeekyear()));
         
         etudiant etu = new etudiant(user);
         SeanceGroupe seanceUser = new SeanceGroupe(etu.getGroupe().GetID());
@@ -52,8 +60,11 @@ public class MainPage extends JFrame{
         conteneurEDT.setLayout(null);
         conteneurEDT.setBackground(Color.LIGHT_GRAY);
         
+        suivant.addActionListener(new MainPage.bt1Listener());
+        prec.addActionListener(new MainPage.bt2Listener());
         
-        
+        suivant.setBounds(LARGEUR_SCREEN*2/3 - 175/2, HAUTEUR_SCREEN * 85 / 100, 175, 60);
+        prec.setBounds(LARGEUR_SCREEN/3 -175/2, HAUTEUR_SCREEN * 85 / 100, 175, 60);
         
         conteneurEDT.setBounds(LARGEUR_SCREEN*168/10000, HAUTEUR_SCREEN*16/100, LARGEUR_SCREEN*9664/10000, HAUTEUR_SCREEN * 65 / 100);
         navbar.setBounds(0, 0,LARGEUR_SCREEN, HAUTEUR_SCREEN /12);
@@ -94,6 +105,79 @@ public class MainPage extends JFrame{
             semaine.get(i).setBackground(Color.white);
             semaine.get(i).setBounds(conteneurEDT.getWidth()*3/100 + i*lgJour + i*conteneurEDT.getWidth()*2/100, conteneurEDT.getHeight()*5/100, lgJour , conteneurEDT.getHeight()*9/10);
             
+            
+            
+            
+            
+            semaine_txt.get(i).setBounds(conteneurEDT.getWidth()*3/100 + i*lgJour + i*conteneurEDT.getWidth()*2/100 + lgJour/2 - 20, conteneurEDT.getHeight()*2/100, 100, 20);
+            conteneurEDT.add(semaine_txt.get(i));
+            
+        }
+        ArrayList<JPanel> Cases = new ArrayList<>();
+        JPanel Case;
+        int tempsSeance;
+        
+        
+        for (int j = 0; j < seanceUser.getSeance().size(); j++)
+        {
+            
+            if (seanceUser.getSeance().get(j).Getsemaine() == (dt.getWeekOfWeekyear() + cp))
+            {
+                
+                int premierJDeLaSemaine = dt.getDayOfMonth() - dt.getDayOfWeek()+1;
+                switch (seanceUser.getSeance().get(j).Getjour() - premierJDeLaSemaine + 1)
+                {
+                    case 1:
+                     
+                        Case = new JPanel();
+                        tempsSeance = seanceUser.getSeance().get(j).GetheureF() + seanceUser.getSeance().get(j).GetminuteF()/60 - seanceUser.getSeance().get(j).GetheureD() - seanceUser.getSeance().get(j).GetminuteD()/60;
+                        Case.setBounds(0, 1 + (seanceUser.getSeance().get(j).GetheureD()+ seanceUser.getSeance().get(j).GetminuteD()/60 - 17/2)*semaine.get(0).getHeight() /13 , semaine.get(0).getWidth(), tempsSeance *semaine.get(0).getHeight()/13 -1);
+                        Case.setBackground(Color.cyan);
+                        semaine.get(0).add(Case);
+                        
+                        break;
+                    case 2:
+                        Case = new JPanel();
+                        tempsSeance = seanceUser.getSeance().get(j).GetheureF() + seanceUser.getSeance().get(j).GetminuteF()/60 - seanceUser.getSeance().get(j).GetheureD() - seanceUser.getSeance().get(j).GetminuteD()/60;
+                        Case.setBounds(0, 1 + (seanceUser.getSeance().get(j).GetheureD()+ seanceUser.getSeance().get(j).GetminuteD()/60 - 17/2)*semaine.get(0).getHeight() /13 , semaine.get(0).getWidth(), tempsSeance *semaine.get(0).getHeight()/13 -1);
+                        Case.setBackground(Color.cyan);
+                        semaine.get(1).add(Case);
+                        break;
+                    case 3:
+                        Case = new JPanel();
+                        tempsSeance = seanceUser.getSeance().get(j).GetheureF() + seanceUser.getSeance().get(j).GetminuteF()/60 - seanceUser.getSeance().get(j).GetheureD() - seanceUser.getSeance().get(j).GetminuteD()/60;
+                        Case.setBounds(0, 1 + (seanceUser.getSeance().get(j).GetheureD()+ seanceUser.getSeance().get(j).GetminuteD()/60 - 17/2)*semaine.get(0).getHeight() /13 , semaine.get(0).getWidth(), tempsSeance *semaine.get(0).getHeight()/13 -1);
+                        Case.setBackground(Color.cyan);
+                        semaine.get(2).add(Case);
+                        break;
+                    case 4:
+                        Case = new JPanel();
+                        tempsSeance = seanceUser.getSeance().get(j).GetheureF() + seanceUser.getSeance().get(j).GetminuteF()/60 - seanceUser.getSeance().get(j).GetheureD() - seanceUser.getSeance().get(j).GetminuteD()/60;
+                        Case.setBounds(0, 1 + (seanceUser.getSeance().get(j).GetheureD()+ seanceUser.getSeance().get(j).GetminuteD()/60 - 17/2)*semaine.get(0).getHeight() /13 , semaine.get(0).getWidth(), tempsSeance *semaine.get(0).getHeight()/13 -1);
+                        Case.setBackground(Color.cyan);
+                        semaine.get(3).add(Case);
+                        break;
+                    case 5:
+                        Case = new JPanel();
+                        tempsSeance = seanceUser.getSeance().get(j).GetheureF() + seanceUser.getSeance().get(j).GetminuteF()/60 - seanceUser.getSeance().get(j).GetheureD() - seanceUser.getSeance().get(j).GetminuteD()/60;
+                        Case.setBounds(0, 1 + (seanceUser.getSeance().get(j).GetheureD()+ seanceUser.getSeance().get(j).GetminuteD()/60 - 17/2)*semaine.get(0).getHeight() /13 , semaine.get(0).getWidth(), tempsSeance *semaine.get(0).getHeight()/13 -1);
+                        Case.setBackground(Color.cyan);
+                        semaine.get(4).add(Case);
+                        break;
+                    case 6:
+                        Case = new JPanel();
+                        tempsSeance = seanceUser.getSeance().get(j).GetheureF() + seanceUser.getSeance().get(j).GetminuteF()/60 - seanceUser.getSeance().get(j).GetheureD() - seanceUser.getSeance().get(j).GetminuteD()/60;
+                        Case.setBounds(0, 1 + (seanceUser.getSeance().get(j).GetheureD()+ seanceUser.getSeance().get(j).GetminuteD()/60 - 17/2)*semaine.get(0).getHeight() /13 , semaine.get(0).getWidth(), tempsSeance *semaine.get(0).getHeight()/13 -1);
+                        Case.setBackground(Color.cyan);
+                        semaine.get(5).add(Case);
+                        break;
+                    
+                }
+            }
+        }
+        
+        for (int i = 0; i < 6; i++)
+        {
             for (int j = 0; j < 12; j++)
             {
                 line = new JSeparator();
@@ -102,43 +186,6 @@ public class MainPage extends JFrame{
                 lines.get(j + i*12).setBounds(0, semaine.get(i).getHeight() * (j+1) /13, 300, 1);
                 semaine.get(i).add(lines.get(j + i*12));
             }
-            
-            
-            
-            semaine_txt.get(i).setBounds(conteneurEDT.getWidth()*3/100 + i*lgJour + i*conteneurEDT.getWidth()*2/100 + lgJour/2 - 20, conteneurEDT.getHeight()*2/100, 100, 20);
-            conteneurEDT.add(semaine_txt.get(i));
-            
-        }
-        JPanel Case;
-        for (int j = 0; j < seanceUser.getSeance().size(); j++)
-        {
-            
-            if (seanceUser.getSeance().get(j).Getsemaine() == dt.getWeekOfWeekyear())
-            {
-                int premierJDeLaSemaine = dt.getDayOfMonth() - dt.getDayOfWeek();
-                switch (seanceUser.getSeance().get(j).Getjour() - premierJDeLaSemaine + 1)
-                {
-                    case 1:
-                        Case = new JPanel();
-                        int tempsSeance = seanceUser.getSeance().get(j).GetheureF() + seanceUser.getSeance().get(j).GetminuteF()/60 - seanceUser.getSeance().get(j).GetheureD() - seanceUser.getSeance().get(j).GetminuteD();
-                        Case.setBounds(semaine.get(0).getX(), semaine.get(0).getY() + (seanceUser.getSeance().get(j).GetheureD()+ seanceUser.getSeance().get(j).GetminuteD()/60 - 17/2)*semaine.get(0).getHeight() /13 , semaine.get(0).getWidth(), tempsSeance *semaine.get(0).getHeight()/13 );
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        break;
-                    case 4:
-                        break;
-                    case 5:
-                        break;
-                    case 6:
-                        break;
-                    
-                }
-            }
-        }
-        for (int i = 0; i < 6; i++)
-        {
             conteneurEDT.add(semaine.get(i));
         }
         
@@ -156,11 +203,42 @@ public class MainPage extends JFrame{
         
         navbar.add(nom_txt);
         
+        jp.add(suivant);
+        jp.add(prec);
         jp.add(weekofyear);
         jp.add(navbar);
         jp.add(conteneurEDT);
         
         add(jp);
         setVisible(true);
+    }
+    
+    private class bt1Listener implements ActionListener
+    {
+        
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+
+            MainPage mp = new MainPage(userLng, cp + 1);
+            setVisible(false);
+            dispose();
+            
+        }
+        
+    }
+    private class bt2Listener implements ActionListener
+    {
+        
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+
+            MainPage mp = new MainPage(userLng, cp - 1);
+            setVisible(false);
+            dispose();
+            
+        }
+        
     }
 }

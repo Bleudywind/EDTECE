@@ -11,10 +11,8 @@ public class SeanceGroupe {
         ArrayList <String> result = new ArrayList<>();
         result = edtece.MySQL.getStringAndExceptionHandling("SELECT * FROM seance_groupe WHERE ID_GROUPE = '"+ ID_G +"'");
         Seance sc;
-        System.out.print(ID_G);
         for (int i = 0; i < result.size()/2; i++)
         {
-            System.out.print("bite");
             sc = new Seance(Integer.parseInt(result.get(i*2)));
             seance.add(sc);
         }
