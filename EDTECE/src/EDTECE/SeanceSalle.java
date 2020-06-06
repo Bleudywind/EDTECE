@@ -9,8 +9,12 @@ public class SeanceSalle {
     public SeanceSalle(int ID_S)
     {
         ArrayList <String> result = new ArrayList<>();
-        result = edtece.MySQL.getStringAndExceptionHandling("SELECT * FROM seance_salle WHERE ID_SEANCE = '"+ ID_S +"'");
+        result = edtece.MySQL.getStringAndExceptionHandling("SELECT * FROM seance_salles WHERE ID_SEANCE = '"+ ID_S +"'");
         salle = new Salle(Integer.parseInt(result.get(1)));
         seance = new Seance(ID_S);
+    }
+    public Salle GetSalle()
+    {
+        return salle;
     }
 }

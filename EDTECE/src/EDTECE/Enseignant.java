@@ -14,4 +14,8 @@ public class Enseignant {
         Utilisateur = new utilisateur(ID_utilisateur);
         cours = new Cours(Integer.parseInt(result.get(1)));
     }
+    public utilisateur Getuser()
+    {
+        return Utilisateur;
+    }
 }
