@@ -831,7 +831,7 @@ public class MainPage extends JFrame{
         public void actionPerformed(ActionEvent e)
         {
 
-            Research rsh = new Research(userLng, userLng.getDroit(), cp, userLng.getNom());
+            Recap rsh = new Recap(userLng);
             setVisible(false);
             dispose();
             

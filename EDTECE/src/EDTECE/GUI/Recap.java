@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package EDTECE.GUI;
 
 import EDTECE.Enseignant;
@@ -13,16 +17,20 @@ import java.awt.Container;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import org.joda.time.DateTime;
+
+/**
+ *
+ * @author Marie
+ */
 
 
-public class Research extends JFrame{
+
+
+public class Recap extends JFrame{
     private final int HAUTEUR_SCREEN = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
     private final int LARGEUR_SCREEN = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
     private final JLabel nom_txt = new JLabel();
@@ -33,7 +41,7 @@ public class Research extends JFrame{
     private JButton Modifier = new JButton("Modifier");
     private JButton Supprimer = new JButton("Supprimer");
     
-    public Research(utilisateur user,int droit,int cp_semaine,String nom)
+    public Recap(utilisateur user)
     {
         setTitle("Emploi du temps");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -70,14 +78,14 @@ public class Research extends JFrame{
         JLabel infoEdt5;
         JLabel infoEdt6;
         int cpt=0;
-        if(droit==4)
+        if(user.getDroit()==4)
         {       
                 etudiant etu = new etudiant(user);
                 SeanceGroupe seanceUser = new SeanceGroupe(etu.getGroupe().GetID());
                 for (int j = 0; j < seanceUser.getSeance().size(); j++)
-                {System.out.println(seanceUser.getSeance().size());
-                   if(seanceUser.getSeance().get(j).Getcours().GetNom().equals(nom))
-                    {
+                {
+        
+                    
                                 cpt++;
                                
                                 Case = new JPanel();
@@ -105,105 +113,17 @@ public class Research extends JFrame{
                                 Case.add(infoEdt6);
                                 conteneurEDT.add(Case);
                                
-                    }
+                    
                 }        
                 jp.add(navbar);
                 jp.add(conteneurEDT);
                 add(jp);
                 setVisible(true);
         }
-        else if(droit==2)
-        {
-                utilisateur nouveau= new utilisateur(nom);
-                etudiant etu = new etudiant(nouveau);
-                SeanceGroupe seanceUser = new SeanceGroupe(etu.getGroupe().GetID());
-                for (int j = 0; j < seanceUser.getSeance().size(); j++)
-                {
-                    {
-                                cpt++;
-                                Case = new JPanel();
-                                Case.setBounds(0,(conteneurEDT.getHeight()/16)*cpt,conteneurEDT.getWidth(),(conteneurEDT.getHeight()/16));
-                                scE = new Seance_enseignant(seanceUser.getSeance().get(j).getID());
-                                SS = new SeanceSalle(seanceUser.getSeance().get(j).getID());
-                                infoEdt1 = new JLabel("               "+seanceUser.getSeance().get(j).Getcours().GetNom()+ "               ");
-                                infoEdt2 = new JLabel("               "+scE.GetEnseignant().Getuser().getPrenom()+" "+scE.GetEnseignant().Getuser().getNom()+ "               ");
-                                infoEdt3 = new JLabel("               "+etu.getGroupe().getNom()+ " " + etu.getGroupe().getPromo()+ "               ");
-                                infoEdt4 = new JLabel("               "+SS.GetSalle().GetNom()+ " " + SS.GetSalle().GetSite() + " " + SS.GetSalle().getCapacite()+ "               ");
-                                infoEdt5 = new JLabel("               "+ "heure:" +seanceUser.getSeance().get(j).GetheureD()+":"+seanceUser.getSeance().get(j).GetminuteD()+ "-" +seanceUser.getSeance().get(j).GetheureF()+":"+ seanceUser.getSeance().get(j).GetminuteF());
-                                infoEdt6 = new JLabel("               "+seanceUser.getSeance().get(j).Getjour()+"/"+seanceUser.getSeance().get(j).Getmois()+"/"+seanceUser.getSeance().get(j).Getannee());
-                                infoEdt1.setBounds(Case.getWidth()/2 -25 , Case.getHeight()/6, 50, 10);
-                                infoEdt2.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*2/6, 50, 10);
-                                infoEdt3.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*3/6, 50, 10);
-                                infoEdt4.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*4/6, 50, 10);
-                                infoEdt5.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*5/6, 50, 10);
-                                infoEdt6.setBounds(Case.getWidth()/2 -25 , Case.getHeight(), 50, 10);
-                                
-                                Case.add(infoEdt1);
-                                Case.add(infoEdt2);
-                                Case.add(infoEdt3);
-                                Case.add(infoEdt4);
-                                Case.add(infoEdt5);
-                                Case.add(infoEdt6);
-                                conteneurEDT.add(Case);
-                                
-                               
-                    }
-                }        
-                jp.add(navbar);
-                jp.add(conteneurEDT);
-                add(jp);
-                setVisible(true);
-            
-        }
-       else
-        {
-                utilisateur nouveau= new utilisateur(nom);
-                if(nouveau.getDroit()==4)
-               {
-                etudiant etu = new etudiant(nouveau);
-                SeanceGroupe seanceUser = new SeanceGroupe(etu.getGroupe().GetID());
-                for (int j = 0; j < seanceUser.getSeance().size(); j++)
-                {
-                    {
-                                cpt++;
-                                Case = new JPanel();
-                                Case.setBounds(0,(conteneurEDT.getHeight()/16)*cpt,conteneurEDT.getWidth(),(conteneurEDT.getHeight()/16));
-                                scE = new Seance_enseignant(seanceUser.getSeance().get(j).getID());
-                                SS = new SeanceSalle(seanceUser.getSeance().get(j).getID());
-                                infoEdt1 = new JLabel("               "+seanceUser.getSeance().get(j).Getcours().GetNom()+ "               ");
-                                infoEdt2 = new JLabel("               "+scE.GetEnseignant().Getuser().getPrenom()+" "+scE.GetEnseignant().Getuser().getNom()+ "               ");
-                                infoEdt3 = new JLabel("               "+etu.getGroupe().getNom()+ " " + etu.getGroupe().getPromo()+ "               ");
-                                infoEdt4 = new JLabel("               "+SS.GetSalle().GetNom()+ " " + SS.GetSalle().GetSite() + " " + SS.GetSalle().getCapacite()+ "               ");
-                                infoEdt5 = new JLabel("               "+ "heure:" +seanceUser.getSeance().get(j).GetheureD()+":"+seanceUser.getSeance().get(j).GetminuteD()+ "-" +seanceUser.getSeance().get(j).GetheureF()+":"+ seanceUser.getSeance().get(j).GetminuteF());
-                                infoEdt6 = new JLabel("               "+seanceUser.getSeance().get(j).Getjour()+"/"+seanceUser.getSeance().get(j).Getmois()+"/"+seanceUser.getSeance().get(j).Getannee());
-                                infoEdt1.setBounds(Case.getWidth()/2 -25 , Case.getHeight()/6, 50, 10);
-                                infoEdt2.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*2/6, 50, 10);
-                                infoEdt3.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*3/6, 50, 10);
-                                infoEdt4.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*4/6, 50, 10);
-                                infoEdt5.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*5/6, 50, 10);
-                                infoEdt6.setBounds(Case.getWidth()/2 -25 , Case.getHeight(), 50, 10);
-                                
-                                
-                                Case.add(infoEdt1);
-                                Case.add(infoEdt2);
-                                Case.add(infoEdt3);
-                                Case.add(infoEdt4);
-                                Case.add(infoEdt5);
-                                Case.add(infoEdt6);
-                                conteneurEDT.add(Case);
-                                Modifier.addActionListener(new Research.bt1Listener(seanceUser.getSeance().get(j)));
-                                Supprimer.addActionListener(new Research.bt2Listener(seanceUser.getSeance().get(j)));
-                               
-                    }
-                }        
-                jp.add(navbar);
-                jp.add(conteneurEDT);
-                add(jp);
-                setVisible(true);
-               }
-               else
+       
+           else
               {
-               Enseignant profs= new Enseignant(nouveau.getID());
+               Enseignant profs= new Enseignant(user.getID());
                System.out.println(profs.Getuser().getNom());
                Seance_enseignant seanceEns = new Seance_enseignant(profs.Getuser().getID(), true);
                for (int j = 0; j < seanceEns.getSeance().size(); j++)
@@ -234,8 +154,7 @@ public class Research extends JFrame{
                                 Case.add(infoEdt5);
                                 Case.add(infoEdt6);
                                 conteneurEDT.add(Case);
-                                Modifier.addActionListener(new Research.bt1Listener(seanceEns.getSeance().get(j)));
-                                Supprimer.addActionListener(new Research.bt2Listener(seanceEns.getSeance().get(j)));
+                               
                                 infoEdt6.setBounds(Case.getWidth()/2 -25 , Case.getHeight(), 50, 10);
                                
                     }
@@ -250,30 +169,13 @@ public class Research extends JFrame{
 
     }
 
-    private static class bt1Listener implements ActionListener {
-
-        public bt1Listener(Seance seance) {
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent ae) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-    }
-
-    private static class bt2Listener implements ActionListener {
-
-        public bt2Listener(Seance seance) {
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent ae) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-    }
+    
+    
                 
 
    
         
-}
+
+
+    
 
