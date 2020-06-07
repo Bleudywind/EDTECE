@@ -35,6 +35,7 @@ public class Research extends JFrame{
     private utilisateur userLng;
     private JButton Modifier = new JButton("Modifier");
     private JButton Supprimer = new JButton("Supprimer");
+    private JButton EDT = new JButton("Emploi du Temps");
     
     public Research(utilisateur user,int droit,int cp_semaine,String nom)
     {
@@ -52,16 +53,19 @@ public class Research extends JFrame{
         JPanel conteneurEDT = new JPanel();
         conteneurEDT.setLayout(null);
         conteneurEDT.setBackground(Color.LIGHT_GRAY);
+        userLng = user;
        
-    
-       
+        
+       EDT.addActionListener(new Research.bt3Listener());
         
         
         conteneurEDT.setBounds(LARGEUR_SCREEN*168/10000, HAUTEUR_SCREEN*16/100, LARGEUR_SCREEN*9664/10000, HAUTEUR_SCREEN * 65 / 100);
         navbar.setBounds(0, 0,LARGEUR_SCREEN, HAUTEUR_SCREEN /12);
         nom_txt.setBounds(navbar.getWidth()/100 , navbar.getHeight()/ 2 -10, 300, 20);  
         logout.setBounds(navbar.getWidth()*9/10, navbar.getHeight()/2 - 15, 150, 30);
+        EDT.setBounds(navbar.getWidth()*3/10, navbar.getHeight()/2 - 15, 175, 30);
         
+        navbar.add(EDT);
         JPanel Case;
         int tempsSeance;
         Seance_enseignant scE;
@@ -253,26 +257,52 @@ public class Research extends JFrame{
 
     }
 
-    private static class bt1Listener implements ActionListener {
-
-        public bt1Listener(Seance seance) {
+    private class bt1Listener implements ActionListener
+    {
+        
+        
+         public bt1Listener(Seance seance) {
         }
-
         @Override
-        public void actionPerformed(ActionEvent ae) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        public void actionPerformed(ActionEvent e)
+        {
+
+            
+            setVisible(false);
+            dispose();
+            
         }
+        
     }
 
-    private static class bt2Listener implements ActionListener {
-
+    private class bt2Listener implements ActionListener
+    {
         public bt2Listener(Seance seance) {
         }
-
         @Override
-        public void actionPerformed(ActionEvent ae) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        public void actionPerformed(ActionEvent e)
+        {
+
+            
+            setVisible(false);
+            dispose();
+            
         }
+        
+    }
+    private class bt3Listener implements ActionListener
+    {
+        
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+
+            MainPage MP = new MainPage(userLng, 0);
+            setVisible(false);
+            dispose();
+            
+        }
+        
     }
                 
 
