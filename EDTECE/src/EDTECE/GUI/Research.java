@@ -71,6 +71,7 @@ public class Research extends JFrame{
         JLabel infoEdt3;
         JLabel infoEdt4;
         JLabel infoEdt5;
+        JLabel infoEdt6;
         int cpt=0;
         if(droit==4)
         {       
@@ -91,19 +92,20 @@ public class Research extends JFrame{
                                 infoEdt3 = new JLabel("               "+etu.getGroupe().getNom()+ " " + etu.getGroupe().getPromo()+ "               ");
                                 infoEdt4 = new JLabel("               "+SS.GetSalle().GetNom()+ " " + SS.GetSalle().GetSite() + " " + SS.GetSalle().getCapacite()+ "               ");
                                 infoEdt5 = new JLabel("               "+ "heure:" +seanceUser.getSeance().get(j).GetheureD()+":"+seanceUser.getSeance().get(j).GetminuteD()+ "-" +seanceUser.getSeance().get(j).GetheureF()+":"+ seanceUser.getSeance().get(j).GetminuteF());
-
+                                infoEdt6 = new JLabel("               "+seanceUser.getSeance().get(j).Getjour()+"/"+seanceUser.getSeance().get(j).Getmois()+"/"+seanceUser.getSeance().get(j).Getannee());
                                 infoEdt1.setBounds(Case.getWidth()/2 -25 , Case.getHeight()/6, 50, 10);
                                 infoEdt2.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*2/6, 50, 10);
                                 infoEdt3.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*3/6, 50, 10);
                                 infoEdt4.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*4/6, 50, 10);
                                 infoEdt5.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*4/6, 50, 10);
-                               
+                                infoEdt6.setBounds(Case.getWidth()/2 -25 , Case.getHeight(), 50, 10);
 
                                 Case.add(infoEdt1);
                                 Case.add(infoEdt2);
                                 Case.add(infoEdt3);
                                 Case.add(infoEdt4);
                                 Case.add(infoEdt5);
+                                Case.add(infoEdt6);
                                 conteneurEDT.add(Case);
                                
                     }
@@ -131,18 +133,20 @@ public class Research extends JFrame{
                                 infoEdt3 = new JLabel("               "+etu.getGroupe().getNom()+ " " + etu.getGroupe().getPromo()+ "               ");
                                 infoEdt4 = new JLabel("               "+SS.GetSalle().GetNom()+ " " + SS.GetSalle().GetSite() + " " + SS.GetSalle().getCapacite()+ "               ");
                                 infoEdt5 = new JLabel("               "+ "heure:" +seanceUser.getSeance().get(j).GetheureD()+":"+seanceUser.getSeance().get(j).GetminuteD()+ "-" +seanceUser.getSeance().get(j).GetheureF()+":"+ seanceUser.getSeance().get(j).GetminuteF());
+                                infoEdt6 = new JLabel("               "+seanceUser.getSeance().get(j).Getjour()+"/"+seanceUser.getSeance().get(j).Getmois()+"/"+seanceUser.getSeance().get(j).Getannee());
                                 infoEdt1.setBounds(Case.getWidth()/2 -25 , Case.getHeight()/6, 50, 10);
                                 infoEdt2.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*2/6, 50, 10);
                                 infoEdt3.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*3/6, 50, 10);
                                 infoEdt4.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*4/6, 50, 10);
                                 infoEdt5.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*5/6, 50, 10);
+                                infoEdt6.setBounds(Case.getWidth()/2 -25 , Case.getHeight(), 50, 10);
                                 
                                 Case.add(infoEdt1);
                                 Case.add(infoEdt2);
                                 Case.add(infoEdt3);
                                 Case.add(infoEdt4);
                                 Case.add(infoEdt5);
-                                
+                                Case.add(infoEdt6);
                                 conteneurEDT.add(Case);
                                 
                                
@@ -174,11 +178,13 @@ public class Research extends JFrame{
                                 infoEdt3 = new JLabel("               "+etu.getGroupe().getNom()+ " " + etu.getGroupe().getPromo()+ "               ");
                                 infoEdt4 = new JLabel("               "+SS.GetSalle().GetNom()+ " " + SS.GetSalle().GetSite() + " " + SS.GetSalle().getCapacite()+ "               ");
                                 infoEdt5 = new JLabel("               "+ "heure:" +seanceUser.getSeance().get(j).GetheureD()+":"+seanceUser.getSeance().get(j).GetminuteD()+ "-" +seanceUser.getSeance().get(j).GetheureF()+":"+ seanceUser.getSeance().get(j).GetminuteF());
+                                infoEdt6 = new JLabel("               "+seanceUser.getSeance().get(j).Getjour()+"/"+seanceUser.getSeance().get(j).Getmois()+"/"+seanceUser.getSeance().get(j).Getannee());
                                 infoEdt1.setBounds(Case.getWidth()/2 -25 , Case.getHeight()/6, 50, 10);
                                 infoEdt2.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*2/6, 50, 10);
                                 infoEdt3.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*3/6, 50, 10);
                                 infoEdt4.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*4/6, 50, 10);
                                 infoEdt5.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*5/6, 50, 10);
+                                infoEdt6.setBounds(Case.getWidth()/2 -25 , Case.getHeight(), 50, 10);
                                 
                                 
                                 Case.add(infoEdt1);
@@ -186,6 +192,7 @@ public class Research extends JFrame{
                                 Case.add(infoEdt3);
                                 Case.add(infoEdt4);
                                 Case.add(infoEdt5);
+                                Case.add(infoEdt6);
                                 conteneurEDT.add(Case);
                                 Modifier.addActionListener(new Research.bt1Listener(seanceUser.getSeance().get(j)));
                                 Supprimer.addActionListener(new Research.bt2Listener(seanceUser.getSeance().get(j)));
@@ -212,14 +219,15 @@ public class Research extends JFrame{
                                 SS = new SeanceSalle(seanceEns.getSeance().get(j).getID());
                                 infoEdt1 = new JLabel("               "+seanceEns.getSeance().get(j).Getcours().GetNom()+ "               ");
                                 infoEdt2 = new JLabel("               "+scE.GetEnseignant().Getuser().getPrenom()+" "+scE.GetEnseignant().Getuser().getNom()+ "               ");
-                                
                                 infoEdt4 = new JLabel("               "+SS.GetSalle().GetNom()+ " " + SS.GetSalle().GetSite() + " " + SS.GetSalle().getCapacite()+ "               ");
                                 infoEdt5 = new JLabel("               "+ "heure:" +seanceEns.getSeance().get(j).GetheureD()+":"+seanceEns.getSeance().get(j).GetminuteD()+ "-" +seanceEns.getSeance().get(j).GetheureF()+":"+ seanceEns.getSeance().get(j).GetminuteF());
+                                infoEdt6 = new JLabel("               "+seanceEns.getSeance().get(j).Getjour()+"/"+seanceEns.getSeance().get(j).Getmois()+"/"+seanceEns.getSeance().get(j).Getannee());
                                 infoEdt1.setBounds(Case.getWidth()/2 -25 , Case.getHeight(), 50, 10);
                                 infoEdt2.setBounds(Case.getWidth()/2 -25 , Case.getHeight(), 50, 10);
                                 infoEdt4.setBounds(Case.getWidth()/2 -25 , Case.getHeight(), 50, 10);
                                 infoEdt5.setBounds(Case.getWidth()/2 -25 , Case.getHeight(), 50, 10);
-                               
+                                infoEdt6.setBounds(Case.getWidth()/2 -25 , Case.getHeight(), 50, 10);
+                                
                                 Modifier.setBounds(Case.getWidth()/2 -25 , Case.getHeight(), 50, 10);
                                 Supprimer.setBounds(Case.getWidth()/2 -25 , Case.getHeight(), 50, 10);
                  
@@ -227,10 +235,11 @@ public class Research extends JFrame{
                                 Case.add(infoEdt2);
                                 Case.add(infoEdt4);
                                 Case.add(infoEdt5);
+                                Case.add(infoEdt6);
                                 conteneurEDT.add(Case);
                                 Modifier.addActionListener(new Research.bt1Listener(seanceEns.getSeance().get(j)));
                                 Supprimer.addActionListener(new Research.bt2Listener(seanceEns.getSeance().get(j)));
-                                
+                                infoEdt6.setBounds(Case.getWidth()/2 -25 , Case.getHeight(), 50, 10);
                                
                     }
                 }        
