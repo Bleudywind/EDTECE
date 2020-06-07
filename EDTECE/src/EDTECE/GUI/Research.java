@@ -2,6 +2,7 @@
 package EDTECE.GUI;
 
 import EDTECE.Enseignant;
+import EDTECE.Seance;
 import EDTECE.SeanceGroupe;
 import EDTECE.SeanceSalle;
 import EDTECE.Seance_enseignant;
@@ -186,8 +187,8 @@ public class Research extends JFrame{
                                 Case.add(infoEdt4);
                                 Case.add(infoEdt5);
                                 conteneurEDT.add(Case);
-                                Modifier.addActionListener(new Research.bt1Listener());
-                                Supprimer.addActionListener(new Research.bt2Listener());
+                                Modifier.addActionListener(new Research.bt1Listener(seanceUser.getSeance().get(j)));
+                                Supprimer.addActionListener(new Research.bt2Listener(seanceUser.getSeance().get(j)));
                                
                     }
                 }        
@@ -227,8 +228,8 @@ public class Research extends JFrame{
                                 Case.add(infoEdt4);
                                 Case.add(infoEdt5);
                                 conteneurEDT.add(Case);
-                                Modifier.addActionListener(new Research.bt1Listener());
-                                Supprimer.addActionListener(new Research.bt2Listener());
+                                Modifier.addActionListener(new Research.bt1Listener(seanceEns.getSeance().get(j)));
+                                Supprimer.addActionListener(new Research.bt2Listener(seanceEns.getSeance().get(j)));
                                 
                                
                     }
@@ -245,7 +246,7 @@ public class Research extends JFrame{
 
     private static class bt1Listener implements ActionListener {
 
-        public bt1Listener() {
+        public bt1Listener(Seance seance) {
         }
 
         @Override
@@ -256,7 +257,7 @@ public class Research extends JFrame{
 
     private static class bt2Listener implements ActionListener {
 
-        public bt2Listener() {
+        public bt2Listener(Seance seance) {
         }
 
         @Override
