@@ -21,10 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import org.joda.time.DateTime;
 
-/**
- *
- * @author Marie
- */
+
 public class Research extends JFrame{
     private final int HAUTEUR_SCREEN = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
     private final int LARGEUR_SCREEN = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
