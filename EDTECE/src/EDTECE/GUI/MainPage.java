@@ -18,7 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.JSeparator;
+import javax.swing.JPanel;
 import org.joda.time.DateTime;
 
 
@@ -104,8 +104,8 @@ public class MainPage extends JFrame{
         semaine_txt.add(vendredi);
         semaine_txt.add(samedi);
         
-        ArrayList<JSeparator> lines = new ArrayList<>();
-        JSeparator line;
+        ArrayList<JPanel> lines = new ArrayList<>();
+        JPanel line;
         
         ArrayList <JLabel> heures_txt = new ArrayList<>();
         JLabel heure_txt;
@@ -706,7 +706,7 @@ public class MainPage extends JFrame{
         {
             for (int j = 0; j < 12; j++)
             {
-                line = new JSeparator();
+                line = new JPanel();
                 lines.add(line);
                 lines.get(j + i*12).setForeground(Color.BLACK);
                 lines.get(j + i*12).setBounds(0, semaine.get(i).getHeight() * (j+1) /13, 300, 1);
@@ -782,9 +782,7 @@ public class MainPage extends JFrame{
         @Override
         public void actionPerformed(ActionEvent e)
         {
-
-            Research rsh = new Research(userLng, userLng.getDroit(), cp, userLng.getNom());
-            //Login lng = new Login();
+            Login lng = new Login();
             setVisible(false);
             dispose();
             
