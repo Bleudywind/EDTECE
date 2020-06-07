@@ -425,13 +425,15 @@ public class MainPage extends JFrame{
             case 4:
                 etudiant etu = new etudiant(user);
                 SeanceGroupe seanceUser = new SeanceGroupe(etu.getGroupe().GetID());
+                
                 for (int j = 0; j < seanceUser.getSeance().size(); j++)
                 {
                     if (seanceUser.getSeance().get(j).Getsemaine() == (dt.getWeekOfWeekyear() + cp))
                     {
+                        System.out.println(dt.getWeekOfWeekyear() + cp);
 
                         int premierJDeLaSemaine = dt.getDayOfMonth() - dt.getDayOfWeek()+1;
-                        switch (seanceUser.getSeance().get(j).Getjour() - premierJDeLaSemaine + 1)
+                        switch (seanceUser.getSeance().get(j).Getjour() - premierJDeLaSemaine + 1 - cp*7)
                         {
                             case 1:
 
