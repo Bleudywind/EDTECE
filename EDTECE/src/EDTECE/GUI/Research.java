@@ -95,9 +95,8 @@ public class Research extends JFrame{
         
         
         
-        
-        int lgJour = conteneurEDT.getHeight()*14/100;
-        ArrayList<JPanel> Cases = new ArrayList<>();
+  
+       
         JPanel Case;
         int tempsSeance;
         Seance_enseignant scE;
@@ -107,16 +106,15 @@ public class Research extends JFrame{
         JLabel infoEdt3;
         JLabel infoEdt4;
         
-        etudiant etu = new etudiant(user);
+                etudiant etu = new etudiant(user);
                 SeanceGroupe seanceUser = new SeanceGroupe(etu.getGroupe().GetID());
                 for (int j = 0; j < seanceUser.getSeance().size(); j++)
-                {
-                    if (seanceUser.getSeance().get(j).Getcours().GetNom()== nom)
+                {System.out.println(seanceUser.getSeance().size());
+                   if(seanceUser.getSeance().get(j).Getcours().GetNom().equals(nom))
                     {
+                                System.out.println("erreur");
                                 Case = new JPanel();
-                                tempsSeance = seanceUser.getSeance().get(j).GetheureF() + seanceUser.getSeance().get(j).GetminuteF()/60 - seanceUser.getSeance().get(j).GetheureD() - seanceUser.getSeance().get(j).GetminuteD()/60;
-                                Case.setBounds(0, 1 + (seanceUser.getSeance().get(j).GetheureD()+ seanceUser.getSeance().get(j).GetminuteD()/60 - 17/2)*semaine.get(0).getHeight() /13 , semaine.get(0).getWidth(), tempsSeance *semaine.get(0).getHeight()/13 -1);
-
+                                Case.setBounds(200,150,800,900);
                                 scE = new Seance_enseignant(seanceUser.getSeance().get(j).getID());
                                 SS = new SeanceSalle(seanceUser.getSeance().get(j).getID());
                                 infoEdt1 = new JLabel( "               "+seanceUser.getSeance().get(j).Getcours().GetNom()+ "               ");
@@ -134,8 +132,13 @@ public class Research extends JFrame{
                                 Case.add(infoEdt3);
                                 Case.add(infoEdt4);
                                 conteneurEDT.add(Case);
-
-                                }
+                               
+                    }
+                }        
+                jp.add(navbar);
+                jp.add(conteneurEDT);
+                add(jp);
+                setVisible(true);
 
 /*
                             case 2:
@@ -354,7 +357,7 @@ public class Research extends JFrame{
                                 semaine.get(5).add(Case);
                                 break;
 */
-                        }
+                        
                     }
                 
 
