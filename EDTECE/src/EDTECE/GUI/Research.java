@@ -210,7 +210,7 @@ public class Research extends JFrame{
                                 Case.setBounds(0,(conteneurEDT.getHeight()/16)*cpt,conteneurEDT.getWidth(),(conteneurEDT.getHeight()/16));
                                 scE = new Seance_enseignant(seanceEns.getSeance().get(j).getID());
                                 SS = new SeanceSalle(seanceEns.getSeance().get(j).getID());
-                                infoEdt1 = new JLabel( "               "+seanceEns.getSeance().get(j).Getcours().GetNom()+ "               ");
+                                infoEdt1 = new JLabel("               "+seanceEns.getSeance().get(j).Getcours().GetNom()+ "               ");
                                 infoEdt2 = new JLabel("               "+scE.GetEnseignant().Getuser().getPrenom()+" "+scE.GetEnseignant().Getuser().getNom()+ "               ");
                                 
                                 infoEdt4 = new JLabel("               "+SS.GetSalle().GetNom()+ " " + SS.GetSalle().GetSite() + " " + SS.GetSalle().getCapacite()+ "               ");
