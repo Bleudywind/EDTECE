@@ -26,6 +26,18 @@ public class utilisateur {
         droit = Integer.parseInt(user.get(5));
         
     }
+     public utilisateur(String nom)
+    {
+        ArrayList<String> user = new ArrayList<>();
+        user = edtece.MySQL.getStringAndExceptionHandling("SELECT * FROM  utilisateur WHERE NOM='" + nom + "';");
+        
+        ID = Integer.parseInt(user.get(0));
+        email=user.get(2);
+        password=user.get(3);
+        prenom = user.get(4);
+        droit = Integer.parseInt(user.get(5));
+        
+    }
     
     public utilisateur(int id)
     {

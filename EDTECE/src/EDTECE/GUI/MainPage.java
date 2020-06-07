@@ -571,7 +571,7 @@ public class MainPage extends JFrame{
                                 Case.setBounds(0, 1 + (seanceUser.getSeance().get(j).GetheureD()+ seanceUser.getSeance().get(j).GetminuteD()/60 - 17/2)*semaine.get(0).getHeight() /13 , semaine.get(0).getWidth(), tempsSeance *semaine.get(0).getHeight()/13 -1);
                                  scE = new Seance_enseignant(seanceUser.getSeance().get(j).getID());
                                 SS = new SeanceSalle(seanceUser.getSeance().get(j).getID());
-                                infoEdt1 = new JLabel( "               "+seanceUser.getSeance().get(j).Getcours().GetNom()+ "               ");
+                                infoEdt1 = new JLabel( "              "+seanceUser.getSeance().get(j).Getcours().GetNom()+ "               ");
                                 infoEdt2 = new JLabel("               "+scE.GetEnseignant().Getuser().getPrenom()+" "+scE.GetEnseignant().Getuser().getNom()+ "               ");
                                 infoEdt3 = new JLabel("               "+etu.getGroupe().getNom()+ " " + etu.getGroupe().getPromo()+ "               ");
                                 infoEdt4 = new JLabel("               "+SS.GetSalle().GetNom()+ " " + SS.GetSalle().GetSite() + " " + SS.GetSalle().getCapacite()+ "               ");

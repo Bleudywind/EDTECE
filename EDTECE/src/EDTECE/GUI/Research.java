@@ -33,7 +33,7 @@ public class Research extends JFrame{
     private int cp;
     private utilisateur userLng;
     
-    public Research(utilisateur user,int type,int cp_semaine,String nom)
+    public Research(utilisateur user,int droit,int cp_semaine,String nom)
     {
         setTitle("Emploi du temps");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -42,16 +42,9 @@ public class Research extends JFrame{
         JPanel jp = new JPanel();
         jp.setLayout(null);
         
-        userLng =user;
-        
         DateTime dt = new DateTime();
         cp = cp_semaine;
-        weekofyear = new JLabel("Semaine " + Integer.toString(cp + dt.getWeekOfWeekyear()));
-        
-        
-        
-        
-        
+        weekofyear = new JLabel("Semaine " + Integer.toString(cp + dt.getWeekOfWeekyear()));   
         
         nom_txt.setText("Emploi du temps de " + user.getPrenom() + " " + user.getNom());
         
@@ -68,35 +61,9 @@ public class Research extends JFrame{
         
         conteneurEDT.setBounds(LARGEUR_SCREEN*168/10000, HAUTEUR_SCREEN*16/100, LARGEUR_SCREEN*9664/10000, HAUTEUR_SCREEN * 65 / 100);
         navbar.setBounds(0, 0,LARGEUR_SCREEN, HAUTEUR_SCREEN /12);
-        nom_txt.setBounds(navbar.getWidth()/100 , navbar.getHeight()/ 2 -10, 300, 20);
-        
+        nom_txt.setBounds(navbar.getWidth()/100 , navbar.getHeight()/ 2 -10, 300, 20);  
         logout.setBounds(navbar.getWidth()*9/10, navbar.getHeight()/2 - 15, 150, 30);
         
-        ArrayList <JPanel> semaine = new ArrayList<JPanel>();
-        JPanel jour;
-        ArrayList <JLabel> semaine_txt = new ArrayList<JLabel>();
-        JLabel lundi = new JLabel("lundi");
-        JLabel mardi = new JLabel("mardi");
-        JLabel mercredi = new JLabel("mercredi");
-        JLabel jeudi = new JLabel("jeudi");
-        JLabel vendredi = new JLabel("vendredi");
-        JLabel samedi = new JLabel("samedi");
-        
-        semaine_txt.add(lundi);
-        semaine_txt.add(mardi);
-        semaine_txt.add(mercredi);
-        semaine_txt.add(jeudi);
-        semaine_txt.add(vendredi);
-        semaine_txt.add(samedi);
-        
-        
-        ArrayList <JLabel> heures_txt = new ArrayList<JLabel>();
-        JLabel heure_txt;
-        
-        
-        
-  
-       
         JPanel Case;
         int tempsSeance;
         Seance_enseignant scE;
@@ -105,32 +72,40 @@ public class Research extends JFrame{
         JLabel infoEdt2;
         JLabel infoEdt3;
         JLabel infoEdt4;
-        
+        JLabel infoEdt5;
+        int cpt=0;
+        if(droit==4)
+        {       
                 etudiant etu = new etudiant(user);
                 SeanceGroupe seanceUser = new SeanceGroupe(etu.getGroupe().GetID());
                 for (int j = 0; j < seanceUser.getSeance().size(); j++)
                 {System.out.println(seanceUser.getSeance().size());
                    if(seanceUser.getSeance().get(j).Getcours().GetNom().equals(nom))
                     {
+                                cpt++;
                                 System.out.println("erreur");
                                 Case = new JPanel();
-                                Case.setBounds(200,150,800,900);
+                                Case.setBounds(0,(conteneurEDT.getHeight()/12)*cpt,conteneurEDT.getWidth(),(conteneurEDT.getHeight()/12)*cpt);
                                 scE = new Seance_enseignant(seanceUser.getSeance().get(j).getID());
                                 SS = new SeanceSalle(seanceUser.getSeance().get(j).getID());
                                 infoEdt1 = new JLabel( "               "+seanceUser.getSeance().get(j).Getcours().GetNom()+ "               ");
                                 infoEdt2 = new JLabel("               "+scE.GetEnseignant().Getuser().getPrenom()+" "+scE.GetEnseignant().Getuser().getNom()+ "               ");
                                 infoEdt3 = new JLabel("               "+etu.getGroupe().getNom()+ " " + etu.getGroupe().getPromo()+ "               ");
                                 infoEdt4 = new JLabel("               "+SS.GetSalle().GetNom()+ " " + SS.GetSalle().GetSite() + " " + SS.GetSalle().getCapacite()+ "               ");
+                                infoEdt5 = new JLabel("               "+ "heure:" +seanceUser.getSeance().get(j).GetheureD()+":"+seanceUser.getSeance().get(j).GetminuteD()+ "-" +seanceUser.getSeance().get(j).GetheureF()+":"+ seanceUser.getSeance().get(j).GetminuteF());
 
-                                infoEdt1.setBounds(Case.getWidth()/2 -25 , Case.getHeight()/5, 50, 10);
-                                infoEdt2.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*2/5, 50, 10);
-                                infoEdt3.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*3/5, 50, 10);
-                                infoEdt4.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*4/5, 50, 10);
+                                infoEdt1.setBounds(Case.getWidth()/2 -25 , Case.getHeight()/6*cpt, 50, 10);
+                                infoEdt2.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*2/6*cpt, 50, 10);
+                                infoEdt3.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*3/6*cpt, 50, 10);
+                                infoEdt4.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*4/6*cpt, 50, 10);
+                                infoEdt5.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*4/6*cpt, 50, 10);
+                                System.out.println( Case.getHeight()/5*cpt);
 
                                 Case.add(infoEdt1);
                                 Case.add(infoEdt2);
                                 Case.add(infoEdt3);
                                 Case.add(infoEdt4);
+                                Case.add(infoEdt5);
                                 conteneurEDT.add(Case);
                                
                     }
@@ -139,226 +114,48 @@ public class Research extends JFrame{
                 jp.add(conteneurEDT);
                 add(jp);
                 setVisible(true);
-
-/*
-                            case 2:
+        }
+        else if(droit==2 || droit==1)
+        {
+                utilisateur nouveau= new utilisateur(nom);
+                etudiant etu = new etudiant(nouveau);
+                SeanceGroupe seanceUser = new SeanceGroupe(etu.getGroupe().GetID());
+                for (int j = 0; j < seanceUser.getSeance().size(); j++)
+                {
+                    {
+                                cpt++;
                                 Case = new JPanel();
-                                tempsSeance = seanceUser.getSeance().get(j).GetheureF() + seanceUser.getSeance().get(j).GetminuteF()/60 - seanceUser.getSeance().get(j).GetheureD() - seanceUser.getSeance().get(j).GetminuteD()/60;
-                                Case.setBounds(0, 1 + (seanceUser.getSeance().get(j).GetheureD()+ seanceUser.getSeance().get(j).GetminuteD()/60 - 17/2)*semaine.get(0).getHeight() /13 , semaine.get(0).getWidth(), tempsSeance *semaine.get(0).getHeight()/13 -1);
-                                 scE = new Seance_enseignant(seanceUser.getSeance().get(j).getID());
+                                Case.setBounds(0,(conteneurEDT.getHeight()/16)*cpt,conteneurEDT.getWidth(),(conteneurEDT.getHeight()/16)*cpt);
+                                scE = new Seance_enseignant(seanceUser.getSeance().get(j).getID());
                                 SS = new SeanceSalle(seanceUser.getSeance().get(j).getID());
                                 infoEdt1 = new JLabel( "               "+seanceUser.getSeance().get(j).Getcours().GetNom()+ "               ");
                                 infoEdt2 = new JLabel("               "+scE.GetEnseignant().Getuser().getPrenom()+" "+scE.GetEnseignant().Getuser().getNom()+ "               ");
                                 infoEdt3 = new JLabel("               "+etu.getGroupe().getNom()+ " " + etu.getGroupe().getPromo()+ "               ");
                                 infoEdt4 = new JLabel("               "+SS.GetSalle().GetNom()+ " " + SS.GetSalle().GetSite() + " " + SS.GetSalle().getCapacite()+ "               ");
-
-                                infoEdt1.setBounds(Case.getWidth()/2 -25 , Case.getHeight()/5, 50, 10);
-                                infoEdt2.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*2/5, 50, 10);
-                                infoEdt3.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*3/5, 50, 10);
-                                infoEdt4.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*4/5, 50, 10);
-
-                                Case.add(infoEdt1);
-                                Case.add(infoEdt2);
-                                Case.add(infoEdt3);
-                                Case.add(infoEdt4);
-
-                                if (seanceUser.getSeance().get(j).Getcours().GetNom().equals("Mathematiques"))
-                                {
-                                    Case.setBackground(Color.green);
-                                }
-                                else if (seanceUser.getSeance().get(j).Getcours().GetNom().equals("Electromagnetisme"))
-                                {
-                                    Case.setBackground(Color.MAGENTA);
-                                }
-                                else if (seanceUser.getSeance().get(j).Getcours().GetNom().equals("Informatique"))
-                                {
-                                    Case.setBackground(Color.YELLOW);
-                                }
-                                else if (seanceUser.getSeance().get(j).Getcours().GetNom().equals("Electronique"))
-                                {
-                                    Case.setBackground(Color.ORANGE);
-                                }
-                                else
-                                {
-                                    Case.setBackground(Color.CYAN);
-                                }
-                                semaine.get(1).add(Case);
-                                break;
-                            case 3:
-                                Case = new JPanel();
-                                tempsSeance = seanceUser.getSeance().get(j).GetheureF() + seanceUser.getSeance().get(j).GetminuteF()/60 - seanceUser.getSeance().get(j).GetheureD() - seanceUser.getSeance().get(j).GetminuteD()/60;
-                                Case.setBounds(0, 1 + (seanceUser.getSeance().get(j).GetheureD()+ seanceUser.getSeance().get(j).GetminuteD()/60 - 17/2)*semaine.get(0).getHeight() /13 , semaine.get(0).getWidth(), tempsSeance *semaine.get(0).getHeight()/13 -1);
-                                 scE = new Seance_enseignant(seanceUser.getSeance().get(j).getID());
-                                SS = new SeanceSalle(seanceUser.getSeance().get(j).getID());
-                                infoEdt1 = new JLabel( "               "+seanceUser.getSeance().get(j).Getcours().GetNom()+ "               ");
-                                infoEdt2 = new JLabel("               "+scE.GetEnseignant().Getuser().getPrenom()+" "+scE.GetEnseignant().Getuser().getNom()+ "               ");
-                                infoEdt3 = new JLabel("               "+etu.getGroupe().getNom()+ " " + etu.getGroupe().getPromo()+ "               ");
-                                infoEdt4 = new JLabel("               "+SS.GetSalle().GetNom()+ " " + SS.GetSalle().GetSite() + " " + SS.GetSalle().getCapacite()+ "               ");
-
-                                infoEdt1.setBounds(Case.getWidth()/2 -25 , Case.getHeight()/5, 50, 10);
-                                infoEdt2.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*2/5, 50, 10);
-                                infoEdt3.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*3/5, 50, 10);
-                                infoEdt4.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*4/5, 50, 10);
+                                infoEdt5 = new JLabel("               "+ "heure:" +seanceUser.getSeance().get(j).GetheureD()+":"+seanceUser.getSeance().get(j).GetminuteD()+ "-" +seanceUser.getSeance().get(j).GetheureF()+":"+ seanceUser.getSeance().get(j).GetminuteF());
+                                infoEdt1.setBounds(Case.getWidth()/2 -25 , Case.getHeight()/6, 50, 10);
+                                infoEdt2.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*2/6, 50, 10);
+                                infoEdt3.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*3/6, 50, 10);
+                                infoEdt4.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*4/6, 50, 10);
+                                infoEdt5.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*5/6, 50, 10);
 
                                 Case.add(infoEdt1);
                                 Case.add(infoEdt2);
                                 Case.add(infoEdt3);
                                 Case.add(infoEdt4);
-
-                                if (seanceUser.getSeance().get(j).Getcours().GetNom().equals("Mathematiques"))
-                                {
-                                    Case.setBackground(Color.green);
-                                }
-                                else if (seanceUser.getSeance().get(j).Getcours().GetNom().equals("Electromagnetisme"))
-                                {
-                                    Case.setBackground(Color.MAGENTA);
-                                }
-                                else if (seanceUser.getSeance().get(j).Getcours().GetNom().equals("Informatique"))
-                                {
-                                    Case.setBackground(Color.YELLOW);
-                                }
-                                else if (seanceUser.getSeance().get(j).Getcours().GetNom().equals("Electronique"))
-                                {
-                                    Case.setBackground(Color.ORANGE);
-                                }
-                                else
-                                {
-                                    Case.setBackground(Color.CYAN);
-                                }
-                                semaine.get(2).add(Case);
-                                break;
-                            case 4:
-                                Case = new JPanel();
-                                tempsSeance = seanceUser.getSeance().get(j).GetheureF() + seanceUser.getSeance().get(j).GetminuteF()/60 - seanceUser.getSeance().get(j).GetheureD() - seanceUser.getSeance().get(j).GetminuteD()/60;
-                                Case.setBounds(0, 1 + (seanceUser.getSeance().get(j).GetheureD()+ seanceUser.getSeance().get(j).GetminuteD()/60 - 17/2)*semaine.get(0).getHeight() /13 , semaine.get(0).getWidth(), tempsSeance *semaine.get(0).getHeight()/13 -1);
-                                 scE = new Seance_enseignant(seanceUser.getSeance().get(j).getID());
-                                SS = new SeanceSalle(seanceUser.getSeance().get(j).getID());
-                                infoEdt1 = new JLabel( "               "+seanceUser.getSeance().get(j).Getcours().GetNom()+ "               ");
-                                infoEdt2 = new JLabel("               "+scE.GetEnseignant().Getuser().getPrenom()+" "+scE.GetEnseignant().Getuser().getNom()+ "               ");
-                                infoEdt3 = new JLabel("               "+etu.getGroupe().getNom()+ " " + etu.getGroupe().getPromo()+ "               ");
-                                infoEdt4 = new JLabel("               "+SS.GetSalle().GetNom()+ " " + SS.GetSalle().GetSite() + " " + SS.GetSalle().getCapacite()+ "               ");
-
-                                infoEdt1.setBounds(Case.getWidth()/2 -25 , Case.getHeight()/5, 50, 10);
-                                infoEdt2.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*2/5, 50, 10);
-                                infoEdt3.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*3/5, 50, 10);
-                                infoEdt4.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*4/5, 50, 10);
-
-                                Case.add(infoEdt1);
-                                Case.add(infoEdt2);
-                                Case.add(infoEdt3);
-                                Case.add(infoEdt4);
-
-                                if (seanceUser.getSeance().get(j).Getcours().GetNom().equals("Mathematiques"))
-                                {
-                                    Case.setBackground(Color.green);
-                                }
-                                else if (seanceUser.getSeance().get(j).Getcours().GetNom().equals("Electromagnetisme"))
-                                {
-                                    Case.setBackground(Color.MAGENTA);
-                                }
-                                else if (seanceUser.getSeance().get(j).Getcours().GetNom().equals("Informatique"))
-                                {
-                                    Case.setBackground(Color.YELLOW);
-                                }
-                                else if (seanceUser.getSeance().get(j).Getcours().GetNom().equals("Electronique"))
-                                {
-                                    Case.setBackground(Color.ORANGE);
-                                }
-                                else
-                                {
-                                    Case.setBackground(Color.CYAN);
-                                }
-                                semaine.get(3).add(Case);
-                                break;
-                            case 5:
-                                Case = new JPanel();
-                                tempsSeance = seanceUser.getSeance().get(j).GetheureF() + seanceUser.getSeance().get(j).GetminuteF()/60 - seanceUser.getSeance().get(j).GetheureD() - seanceUser.getSeance().get(j).GetminuteD()/60;
-                                Case.setBounds(0, 1 + (seanceUser.getSeance().get(j).GetheureD()+ seanceUser.getSeance().get(j).GetminuteD()/60 - 17/2)*semaine.get(0).getHeight() /13 , semaine.get(0).getWidth(), tempsSeance *semaine.get(0).getHeight()/13 -1);
-                                 scE = new Seance_enseignant(seanceUser.getSeance().get(j).getID());
-                                SS = new SeanceSalle(seanceUser.getSeance().get(j).getID());
-                                infoEdt1 = new JLabel( "               "+seanceUser.getSeance().get(j).Getcours().GetNom()+ "               ");
-                                infoEdt2 = new JLabel("               "+scE.GetEnseignant().Getuser().getPrenom()+" "+scE.GetEnseignant().Getuser().getNom()+ "               ");
-                                infoEdt3 = new JLabel("               "+etu.getGroupe().getNom()+ " " + etu.getGroupe().getPromo()+ "               ");
-                                infoEdt4 = new JLabel("               "+SS.GetSalle().GetNom()+ " " + SS.GetSalle().GetSite() + " " + SS.GetSalle().getCapacite()+ "               ");
-
-                                infoEdt1.setBounds(Case.getWidth()/2 -25 , Case.getHeight()/5, 50, 10);
-                                infoEdt2.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*2/5, 50, 10);
-                                infoEdt3.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*3/5, 50, 10);
-                                infoEdt4.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*4/5, 50, 10);
-
-                                Case.add(infoEdt1);
-                                Case.add(infoEdt2);
-                                Case.add(infoEdt3);
-                                Case.add(infoEdt4);
-
-                                if (seanceUser.getSeance().get(j).Getcours().GetNom().equals("Mathematiques"))
-                                {
-                                    Case.setBackground(Color.green);
-                                }
-                                else if (seanceUser.getSeance().get(j).Getcours().GetNom().equals("Electromagnetisme"))
-                                {
-                                    Case.setBackground(Color.MAGENTA);
-                                }
-                                else if (seanceUser.getSeance().get(j).Getcours().GetNom().equals("Informatique"))
-                                {
-                                    Case.setBackground(Color.YELLOW);
-                                }
-                                else if (seanceUser.getSeance().get(j).Getcours().GetNom().equals("Electronique"))
-                                {
-                                    Case.setBackground(Color.ORANGE);
-                                }
-                                else
-                                {
-                                    Case.setBackground(Color.CYAN);
-                                }
-                                semaine.get(4).add(Case);
-                                break;
-                            case 6:
-                                Case = new JPanel();
-                                tempsSeance = seanceUser.getSeance().get(j).GetheureF() + seanceUser.getSeance().get(j).GetminuteF()/60 - seanceUser.getSeance().get(j).GetheureD() - seanceUser.getSeance().get(j).GetminuteD()/60;
-                                Case.setBounds(0, 1 + (seanceUser.getSeance().get(j).GetheureD()+ seanceUser.getSeance().get(j).GetminuteD()/60 - 17/2)*semaine.get(0).getHeight() /13 , semaine.get(0).getWidth(), tempsSeance *semaine.get(0).getHeight()/13 -1);
-                                 scE = new Seance_enseignant(seanceUser.getSeance().get(j).getID());
-                                SS = new SeanceSalle(seanceUser.getSeance().get(j).getID());
-                                infoEdt1 = new JLabel( "               "+seanceUser.getSeance().get(j).Getcours().GetNom()+ "               ");
-                                infoEdt2 = new JLabel("               "+scE.GetEnseignant().Getuser().getPrenom()+" "+scE.GetEnseignant().Getuser().getNom()+ "               ");
-                                infoEdt3 = new JLabel("               "+etu.getGroupe().getNom()+ " " + etu.getGroupe().getPromo()+ "               ");
-                                infoEdt4 = new JLabel("               "+SS.GetSalle().GetNom()+ " " + SS.GetSalle().GetSite() + " " + SS.GetSalle().getCapacite()+ "               ");
-
-                                infoEdt1.setBounds(Case.getWidth()/2 -25 , Case.getHeight()/5, 50, 10);
-                                infoEdt2.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*2/5, 50, 10);
-                                infoEdt3.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*3/5, 50, 10);
-                                infoEdt4.setBounds(Case.getWidth()/2 -25 , Case.getHeight()*4/5, 50, 10);
-
-                                Case.add(infoEdt1);
-                                Case.add(infoEdt2);
-                                Case.add(infoEdt3);
-                                Case.add(infoEdt4);
-
-                                if (seanceUser.getSeance().get(j).Getcours().GetNom().equals("Mathematiques"))
-                                {
-                                    Case.setBackground(Color.green);
-                                }
-                                else if (seanceUser.getSeance().get(j).Getcours().GetNom().equals("Electromagnetisme"))
-                                {
-                                    Case.setBackground(Color.MAGENTA);
-                                }
-                                else if (seanceUser.getSeance().get(j).Getcours().GetNom().equals("Informatique"))
-                                {
-                                    Case.setBackground(Color.YELLOW);
-                                }
-                                else if (seanceUser.getSeance().get(j).Getcours().GetNom().equals("Electronique"))
-                                {
-                                    Case.setBackground(Color.ORANGE);
-                                }
-                                else
-                                {
-                                    Case.setBackground(Color.CYAN);
-                                }
-                                semaine.get(5).add(Case);
-                                break;
-*/
-                        
+                                Case.add(infoEdt5);
+                                conteneurEDT.add(Case);
+                               
                     }
+                }        
+                jp.add(navbar);
+                jp.add(conteneurEDT);
+                add(jp);
+                setVisible(true);
+            
+        }
+
+    }
                 
 
     private class btListener implements ActionListener
