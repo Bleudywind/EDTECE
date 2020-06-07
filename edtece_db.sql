@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 07 juin 2020 à 14:46
+-- Généré le :  Dim 07 juin 2020 à 19:09
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -311,7 +311,7 @@ INSERT INTO `seance_enseignant` (`ID_SCEANCE`, `ID_ENSEIGNANT`) VALUES
 (10, 20),
 (11, 2),
 (12, 18),
-(13, 2),
+(13, 20),
 (14, 2),
 (15, 19),
 (16, 18),
