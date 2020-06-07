@@ -18,7 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.JSeparator;
+import javax.swing.JPanel;
 import org.joda.time.DateTime;
 
 
@@ -31,6 +31,9 @@ public class MainPage extends JFrame{
     private JButton suivant = new JButton("Semaine suivante");
     private JButton prec = new JButton("Semaine précédente");
     private JButton logout = new JButton("Se Déconnecter");
+    private JButton recapCours = new JButton("Récapitulatif des cours");
+    private JButton research = new JButton("Rechercher");
+    private JTextField rshTextField = new JTextField();
     private int cp;
     private utilisateur userLng;
     
@@ -68,6 +71,8 @@ public class MainPage extends JFrame{
         suivant.addActionListener(new MainPage.bt1Listener());
         prec.addActionListener(new MainPage.bt2Listener());
         logout.addActionListener(new MainPage.bt3Listener());
+        research.addActionListener(new MainPage.bt4Listener());
+        recapCours.addActionListener(new MainPage.bt5Listener());
         
         suivant.setBounds(LARGEUR_SCREEN*2/3 - 175/2, HAUTEUR_SCREEN * 85 / 100, 175, 60);
         prec.setBounds(LARGEUR_SCREEN/3 -175/2, HAUTEUR_SCREEN * 85 / 100, 175, 60);
@@ -78,10 +83,13 @@ public class MainPage extends JFrame{
         nom_txt.setBounds(navbar.getWidth()/100 , navbar.getHeight()/ 2 -10, 300, 20);
         
         logout.setBounds(navbar.getWidth()*9/10, navbar.getHeight()/2 - 15, 150, 30);
+        recapCours.setBounds(navbar.getWidth()*2/10, navbar.getHeight()/2 - 15, 175, 30);
+        rshTextField.setBounds(navbar.getWidth()*4/10, navbar.getHeight()/2 - 15, 175, 30);
+        research.setBounds(navbar.getWidth()*5/10, navbar.getHeight()/2 - 15, 175, 30);
         
-        ArrayList <JPanel> semaine = new ArrayList<JPanel>();
+        ArrayList <JPanel> semaine = new ArrayList<>();
         JPanel jour;
-        ArrayList <JLabel> semaine_txt = new ArrayList<JLabel>();
+        ArrayList <JLabel> semaine_txt = new ArrayList<>();
         JLabel lundi = new JLabel("lundi");
         JLabel mardi = new JLabel("mardi");
         JLabel mercredi = new JLabel("mercredi");
@@ -96,10 +104,10 @@ public class MainPage extends JFrame{
         semaine_txt.add(vendredi);
         semaine_txt.add(samedi);
         
-        ArrayList<JSeparator> lines = new ArrayList<JSeparator>();
-        JSeparator line;
+        ArrayList<JPanel> lines = new ArrayList<>();
+        JPanel line;
         
-        ArrayList <JLabel> heures_txt = new ArrayList<JLabel>();
+        ArrayList <JLabel> heures_txt = new ArrayList<>();
         JLabel heure_txt;
         
         
@@ -698,7 +706,7 @@ public class MainPage extends JFrame{
         {
             for (int j = 0; j < 12; j++)
             {
-                line = new JSeparator();
+                line = new JPanel();
                 lines.add(line);
                 lines.get(j + i*12).setForeground(Color.BLACK);
                 lines.get(j + i*12).setBounds(0, semaine.get(i).getHeight() * (j+1) /13, 300, 1);
@@ -718,6 +726,15 @@ public class MainPage extends JFrame{
         
         weekofyear.setBounds(LARGEUR_SCREEN /2 - 50, HAUTEUR_SCREEN*16/100 - 50, 100, 10);
         
+        if(user.getDroit() == 3 )
+        {
+            rshTextField.setVisible(false);
+            research.setVisible(false);
+        }
+        
+        navbar.add(recapCours);
+        navbar.add(research);
+        navbar.add(rshTextField);
         navbar.add(logout);
         navbar.add(nom_txt);
         
@@ -765,8 +782,54 @@ public class MainPage extends JFrame{
         @Override
         public void actionPerformed(ActionEvent e)
         {
-
             Login lng = new Login();
+            setVisible(false);
+            dispose();
+            
+        }
+        
+    }
+    private class bt4Listener implements ActionListener
+    {
+        
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            if (userLng.getDroit() == 1 || userLng.getDroit() == 2)
+            {
+            Research rsh = new Research(userLng, userLng.getDroit(), cp, rshTextField.getText());
+            setVisible(false);
+            dispose();
+            }
+            else
+            {
+                if (rshTextField.getText().equals("Mathematiques") || rshTextField.getText().equals("Electromagnetisme") || rshTextField.getText().equals("Informatique") || rshTextField.getText().equals("Electronique") || rshTextField.getText().equals("Projet"))
+                {
+                    Research rsh = new Research(userLng, userLng.getDroit(), cp, rshTextField.getText());
+                    setVisible(false);
+                    dispose();
+                }
+                else
+                {
+                    rshTextField.setText("");
+                }
+            
+            }
+            
+            
+            
+            
+        }
+        
+    }
+    private class bt5Listener implements ActionListener
+    {
+        
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+
+            Research rsh = new Research(userLng, userLng.getDroit(), cp, userLng.getNom());
             setVisible(false);
             dispose();
             

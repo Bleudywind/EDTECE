@@ -3,10 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Thomas/Desktop/Projet%20info/EDTECE/EDTECE/src/EDTECE/SeanceGroupe.java</file>
-            <file>file:/C:/Users/Thomas/Desktop/Projet%20info/EDTECE/EDTECE/src/EDTECE/GUI/Login.java</file>
-            <file>file:/C:/Users/Thomas/Desktop/Projet%20info/EDTECE/EDTECE/src/EDTECE/Seance.java</file>
-            <file>file:/C:/Users/Thomas/Desktop/Projet%20info/EDTECE/EDTECE/src/EDTECE/GUI/MainPage.java</file>
+            <file>file:/C:/wamp64/www/EDTECE/EDTECE/src/EDTECE/MySQL.java</file>
+            <file>file:/C:/wamp64/www/EDTECE/EDTECE/src/EDTECE/Cours.java</file>
+            <file>file:/C:/wamp64/www/EDTECE/EDTECE/src/EDTECE/Enseignant.java</file>
+            <file>file:/C:/wamp64/www/EDTECE/EDTECE/src/EDTECE/GUI/MainPage.java</file>
+            <file>file:/C:/wamp64/www/EDTECE/EDTECE/src/EDTECE/Seance.java</file>
+            <file>file:/C:/wamp64/www/EDTECE/EDTECE/src/EDTECE/utilisateur.java</file>
+            <file>file:/C:/wamp64/www/EDTECE/EDTECE/src/EDTECE/SeanceSalle.java</file>
+            <file>file:/C:/wamp64/www/EDTECE/EDTECE/src/EDTECE/SeanceGroupe.java</file>
+            <file>file:/C:/wamp64/www/EDTECE/EDTECE/src/EDTECE/Salle.java</file>
+            <file>file:/C:/wamp64/www/EDTECE/EDTECE/src/EDTECE/etudiant.java</file>
+            <file>file:/C:/wamp64/www/EDTECE/EDTECE/src/EDTECE/GUI/Research.java</file>
+            <file>file:/C:/wamp64/www/EDTECE/EDTECE/src/EDTECE/EDTECE.java</file>
+            <file>file:/C:/wamp64/www/EDTECE/EDTECE/src/EDTECE/GUI/Login.java</file>
+            <file>file:/C:/wamp64/www/EDTECE/EDTECE/src/EDTECE/Seance_enseignant.java</file>
         </group>
     </open-files>
 </project-private>
