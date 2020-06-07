@@ -133,6 +133,7 @@ public class Research extends JFrame{
                                 Case.add(infoEdt2);
                                 Case.add(infoEdt3);
                                 Case.add(infoEdt4);
+                                conteneurEDT.add(Case);
 
                                 }
 
